@@ -10,10 +10,13 @@ const Navbar = () => {
           <Link href={"/"}>Home</Link>
         </li>
         <li>
-          <Link href="/destinations">Destinations</Link>
+          <Link href="/destination">Destinations</Link>
         </li>
         <li>
           <Link href={"/my-bookings"}>My Bookings</Link>
+        </li>
+        <li>
+          <Link href={"/add-destination"}>Add Destination</Link>
         </li>
       </ul>
       <div>
@@ -22,10 +25,12 @@ const Navbar = () => {
           width={150}
           height={150}
           alt="logo"
+          className="h-6 w-auto"
+           loading="eager"
         />
       </div>
 
-      <ul className="flex gap-3" >
+      <ul className="flex gap-3">
         <li>
           <Link href={"/profile"}>Profile</Link>
         </li>
