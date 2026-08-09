@@ -1,13 +1,16 @@
 import Image from "next/image";
 import { LuMapPin } from "react-icons/lu";
-import { FaRegCalendar } from "react-icons/fa";
+import { FaExternalLinkAlt, FaRegCalendar } from "react-icons/fa";
+import { Button } from "@heroui/react";
+import Link from "next/link";
 
 //ekhane destination card e propos diye data destructuring kore destination er data show korbo
 const DestinationCard = ({ destination }) => {
   //ekhane {destructuring kora holo}
-  const { imageUrl, price, destinationName, duration, country } = destination;
-  console.log(imageUrl);
-  console.log(country);
+  const { _id, imageUrl, price, destinationName, duration, country } =
+    destination;
+  // console.log(imageUrl);
+  // console.log(country);
 
   return (
     <div className="border">
@@ -38,6 +41,13 @@ const DestinationCard = ({ destination }) => {
             <h3 className="test-2xl font-bold">${price}</h3>
           </div>
         </div>
+        <Link href={`/destination/${_id}`}>
+          <Button variant="ghost" className={"mt-1 text-cyan-500"}>
+            {" "}
+            <FaExternalLinkAlt />
+            Book Now
+          </Button>
+        </Link>
       </div>
     </div>
   );
