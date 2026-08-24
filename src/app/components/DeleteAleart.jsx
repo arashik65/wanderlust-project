@@ -11,7 +11,7 @@ export function DeleteAlert({ destination }) {
   // const { destinationName } ekhane destination theke mainly data ta ashbe
   const handelDelete = async () => {
     //ekhane response ke fetch er maddome dhore api call kora hosse
-    const res = await fetch(`http://localhost:5000/destination/${_id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

@@ -1,7 +1,10 @@
 
+import BookingCard from "@/app/components/BookingCard";
 import { DeleteAlert } from "@/app/components/DeleteAleart";
 import { EditModal } from "@/app/components/EditModal";
+import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
@@ -10,8 +13,24 @@ import { LuMapPin } from "react-icons/lu";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
+//server component theke token newar ceshta korsi 
+const {token} = await auth.api.getToken({
+  headers: await headers()
+})
+console.log(token)
+
+
+
   //api ta call korbo server theke
-  const res = await fetch(`http://localhost:5000/destination/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`,
+
+    //ekhane backend er data ta secure kora hosse headers er modde
+    {
+      headers:{
+        authorization:`Bearer ${token}`
+      }
+    }
+  );
   
 //   console.log("ID:", id);
 // console.log("API Response:", destination);
@@ -28,7 +47,8 @@ const DestinationDetailsPage = async ({ params }) => {
     
 
       <Image className="w-full h-100 object-cover " alt="destinationName" src={imageUrl} height={500} width={800} />
-      <div className="p-2">
+    <div className="flex justify-between">
+        <div className="p-2">
         <div className="flex items-center gap-2">
           <LuMapPin size={18} />
           <span>{country}</span>
@@ -43,14 +63,16 @@ const DestinationDetailsPage = async ({ params }) => {
               {duration}
             </div>
           </div>
-          <div>
-            <h3 className="test-2xl font-bold">${price}</h3>
-          </div>
+       
 
         </div>
         <h1 className="mt-10 text-3xl font-bold">Overview</h1>
         <p>{description}</p>
       </div>
+
+      booking card
+      <BookingCard destination={destination}></BookingCard>
+    </div>
     </div>
   );
 };

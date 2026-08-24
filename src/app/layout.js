@@ -1,15 +1,14 @@
-import { Josefin_Sans} from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { HeroUIProvider } from "@heroui/react";
+// import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "sonner";
 
 const josefin = Josefin_Sans({
-
   subsets: ["latin"],
 });
-
-
 
 export const metadata = {
   title: "Create Next App",
@@ -18,16 +17,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${josefin.className}  h-full antialiased`}
-    >
+    <html lang="en" className={`${josefin.className}  h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>
         {children}
 
         <Footer></Footer>
-        </body>
+
+        <Toaster theme="light" position="top-right" richColors closeButton />
+      </body>
     </html>
   );
 }
